@@ -92,6 +92,7 @@ echo CallableFunction::abc(123);
 echo "\n";
 */
 
+/*
 function parOuImpar($numbers, $callback) {
 
     foreach ($numbers as $number) {
@@ -108,3 +109,33 @@ parOuImpar($array_of_numbers, function($number) use (&$nums){
 
 print_r($nums);
 // var_dump($nums);
+*/
+
+class Number
+{
+    public static function arrayCallback($arr, $callback)
+    {
+        if (is_callable($callback)) {
+
+            foreach ($arr as $number) {
+                $callback($number);
+            }
+        } else {
+            die("Something is wrong!\n");
+        }
+    }
+}
+
+Number::arrayCallback([1, 2, 3, 4, 5, 6], function($number) {
+    echo $number % 2 == 0;
+});
+
+$numbers = [];
+
+Number::arrayCallback([1, 2, 3, 4, 5, 6], function($number) use (&$numbers) {
+    $numbers[] = $number . " - " . ($number % 2 == 0 ? 'true' : 'false');
+});
+
+print_r($numbers);
+
+Number::arrayCallback([1, 2, 3, 4, 5, 6], 'test');
