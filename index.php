@@ -91,3 +91,20 @@ echo "\n";
 echo CallableFunction::abc(123);
 echo "\n";
 */
+
+function parOuImpar($numbers, $callback) {
+
+    foreach ($numbers as $number) {
+        $callback($number);
+    }
+}
+
+$nums = [];
+$array_of_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+parOuImpar($array_of_numbers, function($number) use (&$nums){
+    $nums[] = $number . " - " . ($number % 2 == 0 ? 'true' : 'false');
+});
+
+print_r($nums);
+// var_dump($nums);
