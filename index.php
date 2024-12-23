@@ -111,6 +111,7 @@ print_r($nums);
 // var_dump($nums);
 */
 
+/*
 class Number
 {
     public static function arrayCallback($arr, $callback)
@@ -139,3 +140,22 @@ Number::arrayCallback([1, 2, 3, 4, 5, 6], function($number) use (&$numbers) {
 print_r($numbers);
 
 Number::arrayCallback([1, 2, 3, 4, 5, 6], 'test');
+*/
+
+
+function functions($first, $second, ...$arr) {
+    
+    $first($arr);
+    $second($arr);
+}
+
+functions(function($arr) {
+    echo "First\n";
+    print_r($arr);
+
+}, function($arr) {
+
+    echo "Second\n";
+    print_r($arr);
+    
+}, [1, 2, 3, 4, 5, 6]);
